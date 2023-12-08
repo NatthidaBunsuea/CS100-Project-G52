@@ -84,6 +84,18 @@ const config = {
       activityTypeSelect.appendChild(option);
     }
   }
+
+  function updateDisplay(data) {
+    const displaySection = document.getElementById("displaySection");
+    const displayDataElement = document.getElementById("displayData");
+
+    const formattedData = Object.entries(data)
+    .map(([key, value]) => `"${key}": "${value}"`)
+    .join("\n");
+
+    displayDataElement.textContent = formattedData;
+    displaySection.style.display = "block";
+  }
   
   // Event listener when the page content has finished loading
   document.addEventListener("DOMContentLoaded", async () => {
@@ -91,7 +103,6 @@ const config = {
     populateActivityTypes(activityTypes);
   });
   
-  // Function to submit the form
   // Function to submit the form
   async function submitForm(event) {
     event.preventDefault();
@@ -128,8 +139,6 @@ const config = {
       description: formData.get("description")
     };
   
-    console.log(data);
-  
     try {
       // Send data to the backend using POST request
       const response = await fetch(`http://${window.location.hostname}:${port}/record`, {
@@ -143,6 +152,8 @@ const config = {
       if (response.ok) {
         const responseData = await response.json();
         console.log("Form data submitted successfully!");
+
+        updateDisplay(responseData,data);
   
         // Format JSON data for display
         const formattedData = Object.entries(responseData.data)
@@ -162,15 +173,60 @@ const config = {
     } catch (error) {
       console.error("An error occurred while submitting form data:", error);
     }
-  }
+  }       
   
+  document.addEventListener("DOMContentLoaded", async () => {
+    const activityTypes = await fetchActivityTypes();
+    populateActivityTypes(activityTypes);
+  });
+
   // Event listener for form submission
   document.getElementById("myForm").addEventListener("submit", submitForm);
   
   // Event listeners for input validation on user input
   document.getElementById("fullname").addEventListener("input", validateName);
-  document
-    .getElementById("studentID")
-    .addEventListener("input", validateStudentID);
+  document.getElementById("studentID").addEventListener("input", validateStudentID);
   document.getElementById("email").addEventListener("input", validateEmail);
+
+  function getValuetoresult() {
+    document.getElementById('showresult').removeAttribute('hidden')
+    let topic = "information"
+    let fullname = document.getElementById('fullname')
+    let stid = document.getElementById('studentID')
+    let birth = document.getElementById('dateofBirth')
+    let mail = document.getElementById('email')
+    let mobilenum = document.getElementById('mobilenumber')
+    let gen = document.getElementById('gender')
+    let fact = document.getElementById('faculty')
+    let type = document.getElementById('activityType')
+    let year = document.getElementById('academicYear')
+    let semester = document.getElementById('semester')
+    let start = document.getElementById('startDate')
+    let end = document.getElementById('endDate')
+    let location = document.getElementById('location')
+    let activity = document.getElementById('activity')
+
+
+    let res = document.getElementById('showresult')
+    let msg = ''
+    msg += '<h1><center>' + topic + '</center></h1>';
+    msg += '<p><b>Full Name :</b> '+ fullname.value + '</p>'
+    msg += '<p><b>Student ID :</b> '+ stid.value + '</p>'
+    msg += '<p><b>Date of Birth :</b> '+ birth.value + '</p>'
+    msg += '<p><b>University Email :</b> '+ mail.value + '</p>'
+    msg += '<p><b>Mobile Number  :</b> '+ mobilenum.value + '</p>'
+    msg += '<p><b>Gender  :</b> '+ gen.value   + '</p>'
+    msg += '<p><b> Faculties and Colleges :</b> '+ fact.value  + '</p>'
+    msg += '<p><b> Type of Work/Activity :</b> '+ type.value  + '</p>'
+    msg += '<p><b> Academic Year :</b> '+ year.value  + '</p>'
+    msg += '<p><b> Semester :</b> '+ semester.value  + '</p>'
+    msg += '<p><b> Start Date/Time :</b> '+ start.value  + '</p>'
+    msg += '<p><b> End Date/time :</b> '+ end.value  + '</p>'
+    msg += '<p><b> Location :</b> '+ location.value  + '</p>'
+    msg += '<p><b> Activity :</b> '+ activity.value  + '</p>'
+
+    res.innerHTML = msg
+    res.scrollIntoView()
+  } 
+
   

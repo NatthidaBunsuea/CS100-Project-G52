@@ -2,6 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0>">
         <title>Activities Form</title>
         <link rel="stylesheet" href="ActivitiesStyle.css">
@@ -10,8 +11,8 @@
     <body>
     <div class="form-container">
         <h1>Activities</h1><br>
-        <h3>Les't see what we've done in our Thammasat University!</h3><br>
-        <form id="myForm" action="#" method="post">
+        <h3>Let's see what we've done in our Thammasat University!</h3><br>
+        <form id="myForm" name="myForm" action="#" method="post" enctype="multipart/form-data"> 
 
         <div class="form-group">
             <label for="fullname">First name and Last name</label>
@@ -90,13 +91,15 @@
         </div>
 
         <div class="form-group">
-            <label for="lacation">Location</label>
-            <input type="text" id="lacation" name="lacation">
+            <label for="location">Location</label>
+            <input type="text" id="location" name="location">
         </div>
 
         <div class="form-group">
             <label for="description">Description</label>
             <textarea id="description" name="description" rows="4"></textarea>
+            <label for="pic">Picture</label>
+            <input type="file" id="pic" name="pic">
         </div>
 
         <div class="form-group">
@@ -106,6 +109,17 @@
         </form>
     </div>
 
+    <div class="form-group">
+        <button onclick="getValuetoresult()"></button>
+    </div>
+
+    <div id="displaySection" style="display: none;">
+        <h2>Submitted Data</h2>
+        <pre id="displayData"></pre>
+    
+    </div>    
+    
     <script src="script.js"></script>
+
     </body>   
 </html>     

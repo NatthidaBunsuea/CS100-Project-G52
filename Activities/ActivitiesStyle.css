@@ -8,7 +8,7 @@ body {
     max-width: 600px;
     margin: 20px auto;
     padding: 20px;
-    border: 1px solid #ccc;
+    border: 5px solid rgb(79, 45, 45);
     border-radius: 5px;
   }
   
@@ -44,6 +44,7 @@ body {
   .form-group input[type="email"],
   .form-group select,
   .form-group textarea,
+  .form-group input[type="search"],
   .form-group input[type="datetime-local"] {
     width: 100%;
     padding: 8px;
@@ -51,6 +52,7 @@ body {
     border-radius: 4px;
     box-sizing: border-box;
   }
+
   
   /* Allow vertical resizing for textareas */
   .form-group textarea {
@@ -64,9 +66,9 @@ body {
   
   /* Styling for the submit button */
   .form-group input[type="submit"] {
-    background-color: #4caf50;
-    color: white;
-    padding: 10px 15px;
+    background-color: rgb(203, 152, 0);
+    color: #ffffff;
+    padding: 15px 25px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
