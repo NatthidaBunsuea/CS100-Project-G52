@@ -20,7 +20,7 @@ function validateName() {
 
 function validateMobileNumber() {
   const mobileNumberInput = document.getElementById("mobileNumber");
-  const mobileNumberPattern = /9^0\d{9}$/;
+  const mobileNumberPattern = /^0\d{9}$/;
   const errorElement = document.getElementById("mobileNumberError");
 
   if (!mobileNumberPattern.test(mobileNumberInput.value)) {
